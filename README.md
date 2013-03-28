@@ -29,7 +29,7 @@ STRUCTURE
 The library distribution uses the following organization:
 <pre>
 + EvalBench
-|-- lib        Third-party libraries useful with EvalBench and their licenses
+|-- lib        Third-party libraries needed by EvalBench
 |-- out	       Output files that arise during an evaluation
 |-- src        The source code for the EvalBench library
 |-- src_demo   The source code of demo applications showing the library in use
