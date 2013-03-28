@@ -27,14 +27,14 @@ STRUCTURE
 ---------
 
 The library distribution uses the following organization:
-
+<pre>
 + EvalBench
 |-- lib        Third-party libraries useful with EvalBench and their licenses
 |-- out	       Output files that arise during an evaluation
 |-- src        The source code for the EvalBench library
 |-- src_demo   The source code of demo applications showing the library in use
 |-- xml        Example task lists and other data files
-
+</pre>
 
 REQUIREMENTS
 ------------
@@ -44,9 +44,9 @@ and run evaluation systems, you'll need a copy of the Java Development Kit
 (JDK) for version 1.6 or greater. 
 
 The library depends on the following packages: 
-- Apache Commons Lang 3 classes (http://commons.apache.org/proper/commons-lang/)
-- Apache logging library log4j 1.2 (http://logging.apache.org/log4j/1.2/)
-- JCalendar 1.4 by Kai Toedter (http://www.toedter.com/en/jcalendar/)
+- Apache Commons Lang 3 classes: http://commons.apache.org/proper/commons-lang/
+- Apache logging library log4j 1.2: http://logging.apache.org/log4j/1.2/
+- JCalendar 1.4 by Kai Toedter http://www.toedter.com/en/jcalendar/
 
 We also recommended (though by no means is it required) that you use an
 Integrated Development Environment such as Eclipse (http://eclipse.org).
