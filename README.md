@@ -13,7 +13,7 @@ controlled experiments, interaction logging, questionnaires, usability
 inspections, and insight diaries.
 
 EvalBench is licensed under the terms of a BSD 2-clause license, and can be 
-freely used for both commercial and non-commercial purposes. (see LICENSE)
+freely used for both commercial and non-commercial purposes (see LICENSE).
 
 DEMO
 ----
@@ -46,7 +46,7 @@ and run evaluation systems, you'll need a copy of the Java Development Kit
 The library depends on the following packages: 
 - Apache Commons Lang 3 classes: http://commons.apache.org/proper/commons-lang/
 - Apache logging library log4j 1.2: http://logging.apache.org/log4j/1.2/
-- JCalendar 1.4 by Kai Toedter http://www.toedter.com/en/jcalendar/
+- JCalendar 1.4 by Kai Toedter: http://www.toedter.com/en/jcalendar/
 
 We also recommended (though by no means is it required) that you use an
 Integrated Development Environment such as Eclipse (http://eclipse.org).
