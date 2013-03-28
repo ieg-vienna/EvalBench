@@ -1,4 +1,4 @@
-EvalBench
+EvalBench - A Software Library for Visualization Evaluation
 ================================
 
 EvalBench, an easy-to-use, flexible, and reusable software library written in 
