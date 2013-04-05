@@ -23,6 +23,10 @@ The source of a demo application showing the library in use is included.
 To start the evaluation, select the "Evaluation" menu in the menu bar and 
 select "Start evaluation".
 
+The demo is also available as an 
+[executable JAR file](http://www.ifs.tuwien.ac.at/~rind/preprint/EvalBenchDemo.zip) 
+(unzip first).
+
 STRUCTURE
 ---------
 
