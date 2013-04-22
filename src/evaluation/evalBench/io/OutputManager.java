@@ -111,6 +111,11 @@ public class OutputManager {
             }
         }
     }
+    
+    public File getOutputDirectory()
+    {
+    	return new File (outputDirectory, "");
+    }
 
     public File getJournalFile(String sessionTitle, String suffix) {
         checkDirectory();

@@ -40,6 +40,7 @@ public class Task {
     private String    m_screenshot; 
 
     private Hashtable<String,String> m_configuration;
+    private Configuration m_config_unprocessed;
 
     /**
      * Standard constructor. Initializes Task with empty id and description
@@ -67,7 +68,7 @@ public class Task {
         this.m_taskId = aTaskId;
         this.m_taskDescription = aTaskDescription;
         this.m_taskInstruction = aTaskInstruction;
-        this.m_configuration = new Hashtable<String,String>();
+        this.m_configuration = new Hashtable<String, String>();
         this.m_taskType = "";
     }
 
@@ -77,8 +78,12 @@ public class Task {
      * @return a Hashtable containing the configurations for this task as key value pairs
      */
     public Hashtable<String,String> getConfiguration() {
+    	
         return m_configuration;
     }
+    
+   
+    
 
     /**
      * Set the configurations for this task. A configuration could e.g. be the visualization type or the dataset which
@@ -90,6 +95,19 @@ public class Task {
     }
 
     // task-definition getters & setters
+    
+  
+    @XmlElement(name = "task-config", type = Configuration.class)
+   	public Configuration getConfigurationUnprocessed() {
+    	    	
+   		return m_config_unprocessed;
+   	}
+       
+       
+    public void setConfigurationUnprocessed(Configuration config) {
+    	   
+   		this.m_config_unprocessed = config;
+   	}
 
     /**
      * Get the task type
@@ -97,6 +115,7 @@ public class Task {
      */
     @XmlElement(name = "task-type")
     public String getTaskType() {
+    	
         return m_taskType;
     }
 
@@ -105,6 +124,7 @@ public class Task {
      * @param m_taskType a string representing the task type
      */
     public void setTaskType(String m_taskType) {
+    	
         this.m_taskType = m_taskType;
     }
 

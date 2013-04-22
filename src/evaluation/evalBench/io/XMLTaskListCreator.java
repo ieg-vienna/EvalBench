@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Set;
 
+import javax.xml.namespace.QName;
+
 /**
  * implementation of TaskListCreator. Assumes that every task subclass provides
  * <a href="https://jaxb.dev.java.net">jaxb</a> annotations.
@@ -65,11 +67,26 @@ public class XMLTaskListCreator implements TaskListCreator {
 
                 aConfig.put(str, sessionConfig.get(str));
             }
-
-            //aConfig.put(INPUT_TYPE_KEY,  aTask.getClass().getSimpleName() );
+            
+            // add unprocessed config to old config style
+            
+            // TODO: unify
+            
+            if (aTask.getConfigurationUnprocessed() != null)
+            {
+            	Set<QName> qSet = aTask.getConfigurationUnprocessed().getAny().keySet();
+            	QName[] configurationKeys = qSet.toArray(new QName[qSet.size()]);
+            	        	
+            	for (QName name : configurationKeys) {
+            		
+            		aConfig.put(name.toString(), aTask.getConfigurationUnprocessed().getAny().get(name).toString());
+            		
+        		}
+            }
+            
+            
 
         }
-
 
         return taskList.getTasks();
     }

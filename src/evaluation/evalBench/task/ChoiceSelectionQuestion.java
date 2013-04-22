@@ -4,7 +4,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 
-import org.apache.commons.lang.NullArgumentException;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -51,7 +50,7 @@ public class ChoiceSelectionQuestion extends Question {
 			if (label != null)
 				m_label = label;
 			else
-				throw new NullArgumentException("Label cannot be null!");
+				throw new NullPointerException("Label cannot be null!");
 				
 			m_image = image;
 			m_displayLabel = displayLabel;
