@@ -55,3 +55,10 @@ The library depends on the following packages:
 We also recommended (though by no means is it required) that you use an
 Integrated Development Environment such as Eclipse (http://eclipse.org).
 Especially if you are a Java novice, it will likely make your life much easier.
+
+Citation
+--------
+
+Wolfgang Aigner, Stephan Hoffmann, and Alexander Rind,   
+EvalBench: A Software Library for Visualization Evaluation,   
+_Computer Graphics Forum,_ vol. 32, no. 3, forthcoming, 2013. 
