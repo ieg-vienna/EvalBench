@@ -23,7 +23,7 @@ import java.util.SortedSet;
  * 
  * This class provides <a href="https://jaxb.dev.java.net">jaxb</a> annotations
  * 
- * @author XXX
+ * @author Stephan Hoffmann, Alexander Rind, David Bauer
  */
 public class ChoiceSelectionQuestion extends Question {
 

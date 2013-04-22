@@ -11,7 +11,7 @@ import java.awt.*;
  * Subclass of {@link QuantitativeQuestionPanelStrategy} Task Panel Strategy for
  * a {@link QuantitativeQuestion} with a JTextField for the answer
  * 
- * @author XXX
+ * @author Stephan Hoffmann
  */
 public class QuantitativeQuestionPanelStrategy extends QuestionPanelStrategy {
 	//private JTextField textField;

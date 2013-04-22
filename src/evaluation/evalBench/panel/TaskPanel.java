@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * went wrong. It uses a {@link QuestionPanelStrategy} for task answering
  * issues.
  * 
- * @author XXX
+ * @author Stephan Hoffmann
  */
 public class TaskPanel extends JPanel {
 

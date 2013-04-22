@@ -7,7 +7,7 @@ import javax.swing.*;
 /**
  * Default strategy for unknown tasks
  *
- * @author XXX
+ * @author Stephan Hoffmann
  */
 public class DefaultQuestionPanelStrategy extends QuestionPanelStrategy{
 

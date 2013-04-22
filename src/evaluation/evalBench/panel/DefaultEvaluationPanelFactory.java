@@ -20,7 +20,7 @@ import javax.swing.*;
  * {@link ChoiceSelectionQuestion}, and {@link ItemSelectionQuestion}. For every
  * other task type an empty panel will be returned
  * 
- * @author XXX
+ * @author Stephan Hoffmann, Alexander Rind
  */
 public class DefaultEvaluationPanelFactory implements PanelFactory {
 

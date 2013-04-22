@@ -3,7 +3,7 @@ package evaluation.evalBench.io;
 import evaluation.evalBench.session.EvaluationSession;
 /**
  * Implementation of the abstract {@link JournalFactory} that returns a CSVJournal to the client. 
- * @author XXX
+ * @author Stephan Hoffmann
  *
  */
 public class CsvJournalFactory implements JournalFactory {

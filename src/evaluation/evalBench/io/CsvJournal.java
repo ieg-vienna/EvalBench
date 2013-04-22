@@ -25,7 +25,7 @@ import evaluation.evalBench.task.Task;
  * <p>
  * Line breaks and the field separator (";") are replaced by space.
  * 
- * @author XXX
+ * @author Stephan Hoffmann, Alexander Rind
  * 
  * @see EvaluationSessionJournal
  */

@@ -3,7 +3,7 @@ package evaluation.evalBench.task;
 import javax.xml.bind.annotation.XmlElement;
 
 /**
- * @author XXX
+ * @author David Bauer, Alexander Rind
  * 
  */
 public class YesNoQuestion extends Question {

@@ -22,7 +22,7 @@ import evaluation.evalBench.task.Task;
  * experiment journal with XML output. This journal supports all {@link Question}
  * classes and stores all details that are annotated for JAXB.
  * 
- * @author XXX
+ * @author Rind
  */
 public class XMLJournal implements EvaluationSessionJournal {
 

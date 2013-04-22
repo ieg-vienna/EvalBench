@@ -12,7 +12,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *
  * Every subclass should provide  <a href="https://jaxb.dev.java.net">jaxb</a> annotations for XML unmarshalling
  *
- * @author XXX
+ * @author Stephan Hoffmann, Alexander Rind, David Bauer
  */
 @XmlType(name="questionType")
 public abstract class Question {

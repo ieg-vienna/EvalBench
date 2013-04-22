@@ -8,7 +8,7 @@ import javax.swing.*;
 /**
  * abstract class for a TaskPanelStrategy to be used by an {@link PanelFactory} to create panels for a task
  *
- * @author XXX
+ * @author Stephan Hoffmann
  */
 public abstract class QuestionPanelStrategy {
 

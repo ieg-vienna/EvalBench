@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Class representing a quantitative question a user of a visualization tool has to
  * answer in an evaluation process. E.g. What value has variable x on date y?
  * 
- * @author XXX
+ * @author Stephan Hoffmann, David Bauer
  */
 @XmlRootElement(name = "quantitativeTask")
 public class QuantitativeQuestion extends Question {

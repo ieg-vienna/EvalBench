@@ -3,7 +3,7 @@ package evaluation.evalBench.task;
 import java.util.Date;
 
 /**
- * @author XXX
+ * @author David Bauer, Alexander Rind
  * 
  */
 import javax.xml.bind.annotation.XmlElement;

@@ -4,7 +4,7 @@ import evaluation.evalBench.session.EvaluationSession;
 
 /**
  * Implementation of the abstract {@link JournalFactory} that returns a XMLJournal to the client. 
- * @author XXX
+ * @author Stephan Hoffmann
  *
  */
 public class XMLJournalFactory implements JournalFactory {

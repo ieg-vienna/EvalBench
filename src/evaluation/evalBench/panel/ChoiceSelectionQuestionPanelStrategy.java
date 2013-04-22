@@ -16,7 +16,7 @@ import java.util.TreeSet;
  * {@link ChoiceSelectionQuestion} with check boxes or radio buttons for the
  * answer
  * 
- * @author XXX
+ * @author Stephan Hoffmann, Barbara Neubauer, Alexander Rind
  */
 public class ChoiceSelectionQuestionPanelStrategy extends QuestionPanelStrategy
 		implements ActionListener {

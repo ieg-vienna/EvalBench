@@ -28,7 +28,7 @@ import evaluation.evalBench.task.Task;
  * for {@link InsightTask}s and does not store the task description with every
  * insight. All other tasks are ignored.
  * 
- * @author XXX
+ * @author Rind
  */
 @Deprecated
 public class XMLInsightJournal implements EvaluationSessionJournal {

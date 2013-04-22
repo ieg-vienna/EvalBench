@@ -11,7 +11,7 @@ import javax.swing.*;
  * {@link Task} and a {@link QuestionPanelStrategy} for a given subclass of
  * {@link Question}.
  * 
- * @author XXX
+ * @author Stephan Hoffmann, Alexander Rind
  */
 public interface PanelFactory {
 
