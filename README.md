@@ -1,3 +1,4 @@
+![EvalBench Logo](evalbench-logo_title.png)
 EvalBench - A Software Library for Visualization Evaluation
 ================================
 
