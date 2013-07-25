@@ -63,4 +63,5 @@ Citation
 Wolfgang Aigner, Stephan Hoffmann, and Alexander Rind,   
 EvalBench: A Software Library for Visualization Evaluation,   
 _Computer Graphics Forum,_ vol. 32, no. 3, p. 41-50, 2013. 
+
 PDF: http://publik.tuwien.ac.at/files/PubDat_217457.pdf
