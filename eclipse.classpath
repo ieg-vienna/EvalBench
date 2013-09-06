@@ -3,6 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="src_demo"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/ieg-common.jar"/>
+	<classpathentry kind="lib" path="lib/ieg-util.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
