@@ -8,7 +8,7 @@ import ieg.util.xml.JaxbMarshaller;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.Map;
 import java.util.Set;
 
 import javax.xml.namespace.QName;
@@ -55,11 +55,11 @@ public class XMLTaskListCreator implements TaskListCreator {
          * set session configurations and input configuration for each task
          */
 		// TODO should this code be moved somewhere else?
-        Hashtable<String,String> sessionConfig = aSession.getConfiguration();
+        Map<String,String> sessionConfig = aSession.getConfiguration();
 
         for (Task aTask : taskList.getTasks()){
 
-            Hashtable<String,String> aConfig = aTask.getConfiguration();
+            Map<String,String> aConfig = aTask.getConfiguration();
 
             Set<String> set = sessionConfig.keySet();
 

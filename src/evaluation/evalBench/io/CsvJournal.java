@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
-import java.util.Hashtable;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -117,7 +117,7 @@ public class CsvJournal implements EvaluationSessionJournal {
 				"yyyy-MM-dd HH:mm:ss");
 
 		// write the metaline for the journal csv (first task)
-		Hashtable<String, String> configuration = aTask.getConfiguration();
+		Map<String, String> configuration = aTask.getConfiguration();
 
 		// first record --> add header
 		if (mTaskNumber == 1) {
