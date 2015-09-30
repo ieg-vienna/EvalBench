@@ -43,6 +43,7 @@ public class LoggingDemo {
 		evalPane.add(new JButton(new StartSessionAction(1)));
 		evalPane.add(new JButton(new StartSessionAction(2)));
 		evalPane.add(new JButton(new RestartLoggingAction()));
+		evalPane.add(new JButton(new StopLoggingAction()));
 		frame.getContentPane().add(evalPane, BorderLayout.SOUTH);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,6 +104,24 @@ public class LoggingDemo {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			EvaluationManager.getInstance().initLoggingForExploration();
+		}
+
+	}
+
+	/**
+	 * stops logging 
+	 */
+	static class StopLoggingAction extends AbstractAction {
+
+		private static final long serialVersionUID = 8764981638202257302L;
+
+		public StopLoggingAction() {
+			putValue(AbstractAction.NAME, "Stop logging");
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			EvaluationManager.getInstance().stopLogging();
 		}
 
 	}

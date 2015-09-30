@@ -347,6 +347,19 @@ public class EvaluationManager {
        m_logfile.activateOptions();
     }
 
+	/**
+	 * closes the log file and stops interaction logging.
+	 * To be used in combination with {@link #initLoggingForExploration()}.
+	 */
+	public void stopLogging() {
+        if (this.m_logfile != null) {
+        	logger.fatal(EvaluationResources.getString("eval.evaluationStopLogging"));
+        	Logger.getRootLogger().removeAppender(m_logfile);
+        	m_logfile.close();
+        	m_logfile = null;
+        }
+	}
+	
     /**
      * logs a shutdown message
      */
