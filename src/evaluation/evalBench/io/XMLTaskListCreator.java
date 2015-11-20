@@ -3,7 +3,6 @@ package evaluation.evalBench.io;
 import evaluation.evalBench.session.EvaluationSession;
 import evaluation.evalBench.task.Task;
 import evaluation.evalBench.task.TaskList;
-
 import ieg.util.xml.JaxbMarshaller;
 
 import java.net.URL;
@@ -17,11 +16,14 @@ import javax.xml.namespace.QName;
  * implementation of TaskListCreator. Assumes that every task subclass provides
  * <a href="https://jaxb.dev.java.net">jaxb</a> annotations.
  */
+@SuppressWarnings("rawtypes")
 public class XMLTaskListCreator implements TaskListCreator {
 
  //   private static final String INPUT_TYPE_KEY = "inputType";
     
     private boolean loadAsResource = false; 
+    
+	private Class[] classesToBeBound = new Class[] {TaskList.class};
 
 
     public ArrayList<Task> getTaskListForSession(EvaluationSession aSession, String taskFileName) {
@@ -40,10 +42,10 @@ public class XMLTaskListCreator implements TaskListCreator {
 
             if (uri == null) {
                 taskList = (TaskList) JaxbMarshaller.loadUser(taskFileName,
-                        TaskList.class);
+                		classesToBeBound);
             } else {
                 taskList = (TaskList) JaxbMarshaller.loadUser(uri.openStream(),
-                        TaskList.class);
+                		classesToBeBound);
             }
         } catch (Exception e) {
 
@@ -110,4 +112,14 @@ public class XMLTaskListCreator implements TaskListCreator {
     public boolean isLoadAsResource() {
         return loadAsResource;
     }
+
+
+	public Class[] getClassesToBeBound() {
+		return classesToBeBound;
+	}
+
+
+	public void setClassesToBeBound(Class... classesToBeBound) {
+		this.classesToBeBound = classesToBeBound;
+	}
 }

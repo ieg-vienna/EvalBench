@@ -11,7 +11,7 @@ import java.util.Date;
  *  process.
  *  The test person is to select a start date and an end date. The correctness is calculated by comparing the
  *  selected start or end date with the corresponding correct start and end date, which has to be set before.
- *  It is also possible to set a tolerance value in miliseconds for the dates, which is used
+ *  It is also possible to set a tolerance value in milliseconds for the dates, which is used
  *
  */
 public class IntervalSelectionQuestion extends Question {
