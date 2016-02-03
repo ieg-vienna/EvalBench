@@ -181,6 +181,7 @@ public class Task {
 
     @XmlElementWrapper(name = "questions", required=true)
     @XmlElements({
+            @XmlElement(name = "question", type = Question.class),
             @XmlElement(name = "choice-selection", type = ChoiceSelectionQuestion.class),
             // @XmlElement(name = "interval_selection", type = IntervalSelectionTask.class),
             @XmlElement(name = "quantitative", type = QuantitativeQuestion.class),
