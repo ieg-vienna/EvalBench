@@ -22,7 +22,7 @@ public class XMLTaskListCreator implements TaskListCreator {
  //   private static final String INPUT_TYPE_KEY = "inputType";
     
     private boolean loadAsResource = false; 
-    
+
 	private Class[] classesToBeBound = new Class[] {TaskList.class};
 
 
@@ -41,11 +41,9 @@ public class XMLTaskListCreator implements TaskListCreator {
             }
 
             if (uri == null) {
-                taskList = (TaskList) JaxbMarshaller.loadUser(taskFileName,
-                		classesToBeBound);
+                taskList = (TaskList) JaxbMarshaller.loadUser(taskFileName, classesToBeBound);
             } else {
-                taskList = (TaskList) JaxbMarshaller.loadUser(uri.openStream(),
-                		classesToBeBound);
+                taskList = (TaskList) JaxbMarshaller.loadUser(uri.openStream(), classesToBeBound);
             }
         } catch (Exception e) {
 
