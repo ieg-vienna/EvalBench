@@ -164,11 +164,10 @@ public class CsvJournal implements EvaluationSessionJournal {
 				for (String str : configurationKeys) {
 					writeField(configuration.get(str));
 				}
+				
+				writeEndOfRecord();
 			}
 
-
-
-			writeEndOfRecord();
 		} catch (Exception e) {// Catch exception if any
 			Logger.getLogger(CsvJournal.class).warn(
 					"Error writing journal to file.", e);
