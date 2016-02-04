@@ -13,7 +13,7 @@ import javax.swing.*;
 public abstract class QuestionPanelStrategy {
 
         protected Question m_question;
-        public String errorMessage;
+        private String errorMessage = "";
         
         protected JPanel answeringPanel;
         private JLabel descriptionField;
@@ -56,5 +56,13 @@ public abstract class QuestionPanelStrategy {
         * responsible to set the answers for a specific task
         */
         public abstract void inputFinished();
+
+        public String getErrorMessage() {
+            return errorMessage;
+        }
+
+        protected void setErrorMessage(String errorMessage) {
+            this.errorMessage = errorMessage;
+        }
 
 }

@@ -30,7 +30,7 @@ public class ItemSelectionQuestionPanelStrategy extends QuestionPanelStrategy{
 	
 	@Override
 	public boolean checkForCorrectInput() {
-		this.errorMessage = ("");
+		this.setErrorMessage((""));
 		if (selectedItems != null && selectedItems.size()>0){
             //jStartSelectionButton.setSelected(false);
 
@@ -39,7 +39,7 @@ public class ItemSelectionQuestionPanelStrategy extends QuestionPanelStrategy{
         }
 
         // otherwise show error msg
-        this.errorMessage = EvaluationResources.getString("itemsel.taskpanel.error");
+        this.setErrorMessage(EvaluationResources.getString("itemsel.taskpanel.error"));
 		return false;
 	}
 
@@ -116,7 +116,7 @@ public class ItemSelectionQuestionPanelStrategy extends QuestionPanelStrategy{
 		if(!selectedItems.contains(item)){
 			selectedItems.add(item);
 			showSelectedItems();
-			this.errorMessage = ("");
+			this.setErrorMessage((""));
 		}else{
 			selectedItems.remove(item);
 			showSelectedItems();

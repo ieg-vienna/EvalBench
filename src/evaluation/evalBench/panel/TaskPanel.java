@@ -234,7 +234,7 @@ public class TaskPanel extends JPanel {
 		for (QuestionPanelStrategy strategy : taskPanelStrategyList) {
 			if (!strategy.checkForCorrectInput()) {
 				everythingCorrect = false;
-				errorMessages += " - "+strategy.errorMessage+"\n";
+				errorMessages += " - "+strategy.getErrorMessage() +"\n";
 			}
 		}
 

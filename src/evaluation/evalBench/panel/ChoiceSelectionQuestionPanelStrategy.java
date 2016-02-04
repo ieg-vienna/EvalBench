@@ -111,7 +111,7 @@ public class ChoiceSelectionQuestionPanelStrategy extends QuestionPanelStrategy
 	 */
 	public void actionPerformed(ActionEvent actionEvent) {
 
-		this.errorMessage = ("");
+		this.setErrorMessage((""));
 
 		// check if task is single choice type and deselect all other checkboxes
 		// ChoiceSelectionTask choiceTask = (ChoiceSelectionTask)this.getTask();
@@ -150,20 +150,20 @@ public class ChoiceSelectionQuestionPanelStrategy extends QuestionPanelStrategy
 		if (!givenAnswer.isEmpty()) {
 
 			if (givenAnswer.size() > choiceSelectionTask.getMaxChoices()) {
-				this.errorMessage = EvaluationResources.getString(
+				this.setErrorMessage(EvaluationResources.getString(
 						"choiceselectionquestion.errorCount").replace("x",
-						 String.valueOf(choiceSelectionTask.getMaxChoices()));
+						 String.valueOf(choiceSelectionTask.getMaxChoices())));
 				return false;
 			}
 
 			((ChoiceSelectionQuestion) super.getQuestion())
 					.setGivenAnswer(givenAnswer);
-			this.errorMessage = "";
+			this.setErrorMessage("");
 			return true;
 		} else {
 			// otherwise show error msg
-			this.errorMessage = (EvaluationResources
-					.getString("mctaskpanel.error"));
+			this.setErrorMessage((EvaluationResources
+					.getString("mctaskpanel.error")));
 			return false;
 		}
 	}

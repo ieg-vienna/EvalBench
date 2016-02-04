@@ -56,11 +56,11 @@ public class QuantitativeQuestionPanelStrategy extends QuestionPanelStrategy {
 					quantTask.setGivenAnswer((double) ((JSlider) inputComponent)
 							.getValue());
 
-				this.errorMessage = "";
+				this.setErrorMessage("");
 				return true;
 
 			} catch (Exception e) {
-				this.errorMessage = EvaluationResources.getString("quantitativequestion.errorInt");
+				this.setErrorMessage(EvaluationResources.getString("quantitativequestion.errorInt"));
 				return false;
 			}
 		} else {
@@ -74,11 +74,11 @@ public class QuantitativeQuestionPanelStrategy extends QuestionPanelStrategy {
 							.valueOf(((JSlider) inputComponent).getValue())));
 				}
 
-				this.errorMessage = "";
+				this.setErrorMessage("");
 				return true;
 
 			} catch (Exception e) {
-				this.errorMessage = EvaluationResources.getString("quantitativequestion.errorDouble");
+				this.setErrorMessage(EvaluationResources.getString("quantitativequestion.errorDouble"));
 			}
 		}
 

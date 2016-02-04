@@ -30,14 +30,14 @@ public class YesNoQuestionPanelStrategy extends QuestionPanelStrategy {
 
 		if (yesButton.isSelected()) {
 			((YesNoQuestion) super.getQuestion()).setGivenAnswer(true);
-			errorMessage = "";
+			setErrorMessage("");
 			return true;
 		} else if (noButton.isSelected()) {
 			((YesNoQuestion) super.getQuestion()).setGivenAnswer(false);
-			errorMessage = "";
+			setErrorMessage("");
 			return true;
 		} else {
-			errorMessage = EvaluationResources.getString("yesnoquestion.errorSelect");
+			setErrorMessage(EvaluationResources.getString("yesnoquestion.errorSelect"));
 			return false;
 		}
 	}

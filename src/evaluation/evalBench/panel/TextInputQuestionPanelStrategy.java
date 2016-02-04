@@ -40,16 +40,16 @@ public class TextInputQuestionPanelStrategy extends QuestionPanelStrategy {
                     && !textInputField.getText().matches(
                             textQuestion.getRegEx())) {
 
-				errorMessage = EvaluationResources.getString("textinputquestion.errorPattern");
+				setErrorMessage(EvaluationResources.getString("textinputquestion.errorPattern"));
 				return false;
 			}
 
 			((TextInputQuestion) super.getQuestion()).setGivenAnswer(textInputField
 					.getText());
-			errorMessage = "";
+			setErrorMessage("");
 			return true;
 		} else {
-			errorMessage = EvaluationResources.getString("textinputquestion.errorText");
+			setErrorMessage(EvaluationResources.getString("textinputquestion.errorText"));
 			return false;
 		}
 

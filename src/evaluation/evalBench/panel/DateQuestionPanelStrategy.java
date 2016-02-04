@@ -28,11 +28,11 @@ public class DateQuestionPanelStrategy extends QuestionPanelStrategy {
 //			String formatedDate = formatDate.format(selectedDate);
 
 			((DateQuestion) super.getQuestion()).setGivenAnswer(selectedDate);
-			errorMessage = "";
+			setErrorMessage("");
 			return true;
 		}
 		
-		errorMessage = EvaluationResources.getString("datequestion.errorNull");
+		setErrorMessage(EvaluationResources.getString("datequestion.errorNull"));
 		return false;
 	}
 

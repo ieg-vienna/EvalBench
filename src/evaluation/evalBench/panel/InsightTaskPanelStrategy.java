@@ -48,8 +48,8 @@ public class InsightTaskPanelStrategy extends QuestionPanelStrategy {
         Insight insight = new Insight(insightText);
 
         if (insightText.length() == 0) {
-            super.errorMessage = EvaluationResources
-                    .getString("insight.taskpanel.error.text");
+            super.setErrorMessage(EvaluationResources
+                    .getString("insight.taskpanel.error.text"));
             return false;
         }
 
@@ -73,8 +73,8 @@ public class InsightTaskPanelStrategy extends QuestionPanelStrategy {
 
         if (task.isCharacteristicsRequired() && errors.length() > 0) {
             errors.delete(0, 2);
-            super.errorMessage = EvaluationResources
-                    .getString("insight.taskpanel.error.characteristics");
+            super.setErrorMessage(EvaluationResources
+                    .getString("insight.taskpanel.error.characteristics"));
             return false;
         }
 

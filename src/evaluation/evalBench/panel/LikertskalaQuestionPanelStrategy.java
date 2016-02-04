@@ -45,15 +45,15 @@ public class LikertskalaQuestionPanelStrategy extends QuestionPanelStrategy {
 			try {
 				((LikertskalaQuestion) super.getQuestion()).setGivenAnswer(Integer
 						.parseInt(selectedButton.getName()));
-				errorMessage = "";
+				setErrorMessage("");
 				return true;
 			} catch (Exception e) {
-				errorMessage = EvaluationResources.getString("likertskalaquestion.errorInt");
+				setErrorMessage(EvaluationResources.getString("likertskalaquestion.errorInt"));
 				return false;
 			}
 
 		} else {
-			errorMessage = EvaluationResources.getString("likertskalaquestion.errorButton");
+			setErrorMessage(EvaluationResources.getString("likertskalaquestion.errorButton"));
 			return false;
 		}
 
