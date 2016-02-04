@@ -37,7 +37,7 @@ public class CsvJournal implements EvaluationSessionJournal {
 
     private static final String[] HEADERS = { "participant", "taskIndex",
             "task", "taskType", "startTime", "duration_ms", "taskDescription",
-            "questionId", "questionType", "questionText", "correctness", "givenAnswer",
+            "questionId", "questionType", "questionText", "correctness", "error", "givenAnswer",
             "correctAnswer" };
 
 	private static final String FILE_SUFFIX = "_journal.csv";
@@ -108,6 +108,7 @@ public class CsvJournal implements EvaluationSessionJournal {
 	 * @param aTask
 	 *            answered task
 	 */
+	@SuppressWarnings("deprecation")
 	public void recordTask(Task aTask) {
 
 		mTaskNumber++;
@@ -158,6 +159,7 @@ public class CsvJournal implements EvaluationSessionJournal {
 				writeField(question.getClass().getSimpleName());
 				writeField(question.getQuestionText());
 				writeField(question.determineCorrectness());
+				writeField(question.determineError());
 				writeField(question.getGivenAnswer());
 				writeField(question.getCorrectAnswer());
 				

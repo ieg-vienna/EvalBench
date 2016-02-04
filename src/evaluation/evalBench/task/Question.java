@@ -44,13 +44,25 @@ public abstract class Question {
     }
     
     /**
-     * determines if the question was answered correctly
-     * @return 0 if the question was not answered correctly, 1 if the question was answered correctly
-     * if the evaluation needs a more precise correctness, return any value between 0 and 1.
+     * <b>Deprecated: use {@link #determineError()} instead.</b>
+     * @return <em>1.0</em> for a correct answer or a <em>value smaller than 1.0</em> for a wrong answer.
+     * Typically, a wrong answer results in <em>0.0</em> but other behaviors are possible.
      */
+    @Deprecated
     public double determineCorrectness() {
+        return (determineError() - 1.0) * -1.0;
+    }
+
+    /**
+     * determines if the question was answered correctly and, if not, measure the error.
+     * Typically, a wrong answer results in <em>1.0</em> but each subclass may have a particular range.
+     * As a convention, subclasses should return <em>1.0</em>, if either no correct answer or no given answer are set,
+     * but callers should refer to {@link #hasGroundTruth()} and {@link #getGivenAnswer()} instead.
+     * @return <em>0.0</em> for a correct answer or a <em>positive value</em> for a wrong answer.
+     */
+    public double determineError() {
         return (getCorrectAnswer() != null 
-                && getCorrectAnswer().equals(getGivenAnswer())) ? 1.0 : 0.0;
+                && getCorrectAnswer().equals(getGivenAnswer())) ? 0.0 : 1.0;
     }
 
     /**

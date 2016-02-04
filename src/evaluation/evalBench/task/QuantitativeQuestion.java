@@ -275,20 +275,23 @@ public class QuantitativeQuestion extends Question {
 	}
 
 	/**
-	 * Calculates binary task correctness (answer within tolerance returns 1,
-	 * else 0)
+	 * Answer within tolerance returns 0.0, else 1.0.
+	 * If no tolerance is set the absolute difference is returned (0.0 ... positive infinity).
+	 * @return absolute deviation; if a tolerance is set a binary value (0.0 or 1.0).
 	 */
 	@Override
-	public double determineCorrectness() {
-	    if (m_correctValue == null || m_answeredValue == null) { 
-	        return 0;
-	    }
-	    
-	    double tolerance = (m_tolerance != null) ? m_tolerance : 1E-5;  
-		if (Math.abs(m_correctValue - m_answeredValue) <= tolerance) {
-			return 1;
+	public double determineError() {
+		if (m_correctValue == null || m_answeredValue == null) {
+			return 1.0;
 		}
 
-		return 0;
+		double error = Math.abs(m_correctValue - m_answeredValue);
+		if (m_tolerance == null) {
+			return error;
+		} else if (error <= m_tolerance) {
+			return 0.0;
+		} else {
+			return 1.0;
+		}
 	}
 }

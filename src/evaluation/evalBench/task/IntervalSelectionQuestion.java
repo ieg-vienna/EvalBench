@@ -109,7 +109,7 @@ public class IntervalSelectionQuestion extends Question {
     }
 
     @Override
-    public double determineCorrectness() {
+    public double determineError() {
         if (m_correctIntervalStartDate != null && m_correctIntervalEndDate != null){
 
             long startDiff = Math.abs( m_correctIntervalStartDate.getTime() - m_answeredIntervalStartDate.getTime() );
@@ -117,11 +117,11 @@ public class IntervalSelectionQuestion extends Question {
 
             // check if dates are in the limit of tolerance
             if (startDiff  <= m_intervalTolerance && endDiff <= m_intervalTolerance ) {
-                return 1;
+                return 0.0;
             }
         }
 
-        return 0;
+        return 1.0;
     }
 
     @Override

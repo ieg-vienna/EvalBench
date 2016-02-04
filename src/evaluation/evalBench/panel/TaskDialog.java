@@ -125,7 +125,7 @@ public class TaskDialog {
             msg.append("</td><td>");
 
             if (question.hasGroundTruth()) {
-                allCorrect = allCorrect && (question.determineCorrectness() == 1.0);
+                allCorrect = allCorrect && (question.determineError() == 0.0);
                 msg.append(question.exportCorrectAnswer());
             } else {
                 msg.append(EvaluationResources.getString("taskdialog.feedback.noGroundTruth"));
