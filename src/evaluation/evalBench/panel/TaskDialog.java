@@ -120,12 +120,17 @@ public class TaskDialog {
         StringBuilder msg = new StringBuilder("<table>");
 
         for (Question question : aTask.getQuestions()) {
-            allCorrect = allCorrect && (question.determineCorrectness() == 1.0);
-
             msg.append("<tr><td>");
             msg.append(EvaluationResources.getString("taskdialog.feedback.correctAnswer"));
             msg.append("</td><td>");
-            msg.append(question.exportCorrectAnswer());
+
+            if (question.hasGroundTruth()) {
+                allCorrect = allCorrect && (question.determineCorrectness() == 1.0);
+                msg.append(question.exportCorrectAnswer());
+            } else {
+                msg.append(EvaluationResources.getString("taskdialog.feedback.noGroundTruth"));
+            }
+
             msg.append("</td></tr><tr><td>");
             msg.append(EvaluationResources.getString("taskdialog.feedback.givenAnswer"));
             msg.append("</td><td>");
