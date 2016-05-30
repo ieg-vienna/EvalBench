@@ -100,10 +100,9 @@ public class TaskPanel extends JPanel {
 
 				taskDescriptionPanel.setBorder(BorderFactory.createEmptyBorder(
 						5, 5, 5, 5));
-				taskDescriptionPanel.setText(task.getTaskDescription());
-
+				taskDescriptionPanel.setText(task.getTaskDescription()
 				// TODO handle task (!) description and instructions
-				// + "<br><br>" + task.getTaskInstruction());
+				+ "<br><br>" + task.getTaskInstruction());
 
 				// calculate the height for html textpane
 				View v = taskDescriptionPanel.getUI().getRootView(
