@@ -20,7 +20,7 @@ public class QuantitativeQuestion extends Question {
 	/**
 	 * tolerance; if null a small tolerance will be used
 	 */
-	private Double m_tolerance;
+	private Double m_tolerance = null;
 
 	private Double m_answeredValue;
 
@@ -260,6 +260,7 @@ public class QuantitativeQuestion extends Question {
 	 * 
 	 * @return
 	 */
+	@XmlElement(nillable = true)
 	public Double getTolerance() {
 		return m_tolerance;
 	}
