@@ -47,6 +47,8 @@ public class EvaluationManager {
 
 	private JournalFactory			m_journalFactory;
 
+	private boolean					m_resetSupported = true;
+
     /**
      * Static method "getInstance()" returns the only instance of the class
      * It is synchronized to provide thread safety
@@ -257,13 +259,21 @@ public class EvaluationManager {
         }
     }
 
+    public boolean isResetSupported() {
+		return m_resetSupported;
+	}
+
+	public void setResetSupported(boolean resetSupported) {
+		this.m_resetSupported = resetSupported;
+	}
+
     /**
      * This method should be called when from a {@link evaluation.evalBench.panel.TaskPanel}, when the
      * test person clicks the "Reset Visualization" button and calls
      * {@link EvaluationDelegate#resetGUIForEvaluationSession(EvaluationSession)}
      */
     public void resetCurrentVisualization(){
-        if (m_sessionGroup.getActiveSubSession() != null && m_delegate != null){
+        if (m_sessionGroup.getActiveSubSession() != null && m_delegate != null && m_resetSupported){
 
             this.log(EvaluationResources.getString("eval.resetVis"));
 

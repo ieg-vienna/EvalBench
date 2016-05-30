@@ -91,15 +91,6 @@ public class TaskPanel extends JPanel {
 
 		this.errorMessagePanel = new JTextPane();
 
-		JButton resetButton = new JButton(
-				EvaluationResources.getString("taskpanel.resetButton"));
-
-		resetButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				resetButtonActionPerformed();
-			}
-		});
-
 		try {
 
 			taskPanel.setLayout(new BoxLayout(taskPanel, BoxLayout.Y_AXIS));
@@ -189,6 +180,16 @@ public class TaskPanel extends JPanel {
 			}
 			{
 				this.add(taskPanel, BorderLayout.CENTER);
+
+				if (EvaluationManager.getInstance().isResetSupported()) {
+					JButton resetButton = new JButton(
+							EvaluationResources.getString("taskpanel.resetButton"));
+					resetButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							resetButtonActionPerformed();
+						}
+					});
+
 				JPanel southPanel = new JPanel();
 
 				southPanel.add(resetButton, BorderLayout.NORTH);
@@ -196,6 +197,7 @@ public class TaskPanel extends JPanel {
 						.add(Box.createVerticalStrut(50), BorderLayout.CENTER);
 
 				this.add(southPanel, BorderLayout.SOUTH);
+				}
 
 			}
 
