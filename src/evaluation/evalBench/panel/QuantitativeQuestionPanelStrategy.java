@@ -4,6 +4,8 @@ import evaluation.evalBench.EvaluationResources;
 import evaluation.evalBench.task.QuantitativeQuestion;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import java.awt.*;
 
@@ -18,8 +20,8 @@ public class QuantitativeQuestionPanelStrategy extends QuestionPanelStrategy {
 
 	private JComponent inputComponent;
 
-	private JLabel minLabel;
-	private JLabel maxLabel;
+	private JLabel currentLabel;
+	private double sliderFactor = 1;
 
 
 	/**
@@ -54,7 +56,7 @@ public class QuantitativeQuestionPanelStrategy extends QuestionPanelStrategy {
 									.toString()));
 				else
 					quantTask.setGivenAnswer((double) ((JSlider) inputComponent)
-							.getValue());
+							.getValue()/sliderFactor);
 
 				this.setErrorMessage("");
 				return true;
@@ -71,7 +73,7 @@ public class QuantitativeQuestionPanelStrategy extends QuestionPanelStrategy {
 									.toString()));
 				else {
 					quantTask.setGivenAnswer(Double.parseDouble(String
-							.valueOf(((JSlider) inputComponent).getValue())));
+							.valueOf(((JSlider) inputComponent).getValue()/sliderFactor)));
 				}
 
 				this.setErrorMessage("");
@@ -119,31 +121,11 @@ public class QuantitativeQuestionPanelStrategy extends QuestionPanelStrategy {
 		// return true;
 	}
 
-	private void initInputComponent(boolean useSpinner) {
-		QuantitativeQuestion quantitativeTask = (QuantitativeQuestion) super
-				.getQuestion();
-
-		if (!useSpinner) {
-			inputComponent = new JSlider();
-			((JSlider) inputComponent).setMinimum((int) quantitativeTask
-					.getMinimum());
-			((JSlider) inputComponent).setMaximum((int) quantitativeTask
-					.getMaximum());
-
-			((JSlider) inputComponent).setValue(((int) quantitativeTask
-					.getMinimum() + (int) quantitativeTask.getMaximum()) / 2);
-
-			minLabel = new JLabel(quantitativeTask.getMinimumString());
-			maxLabel = new JLabel(quantitativeTask.getMaximumString());
-
+	private void updateSliderLabel() {
+		if (sliderFactor == 1.0) {
+			currentLabel.setText(Integer.toString(((JSlider) inputComponent).getValue()));
 		} else {
-			inputComponent = new JSpinner();
-			((JSpinner) inputComponent).setModel(new SpinnerNumberModel(
-					(quantitativeTask.getMaximum() + quantitativeTask
-							.getMinimum()) / 2, quantitativeTask.getMinimum(),
-					quantitativeTask.getMaximum(), quantitativeTask
-							.getStepsize()));
-
+			currentLabel.setText(Double.toString(((JSlider) inputComponent).getValue() / sliderFactor));
 		}
 	}
 
@@ -155,17 +137,78 @@ public class QuantitativeQuestionPanelStrategy extends QuestionPanelStrategy {
 	@Override
 	public JPanel getNewAnsweringPanel() {
 
-		initInputComponent(((QuantitativeQuestion) super.getQuestion())
-				.getUseSpinner());
+		QuantitativeQuestion quantitativeTask = (QuantitativeQuestion) super
+				.getQuestion();
 
-		JPanel innerPanel = new JPanel();
-		innerPanel.setLayout(new BorderLayout());
+		if (! quantitativeTask.getUseSpinner()) {
 
-		if (minLabel != null)
-			innerPanel.add(minLabel, BorderLayout.WEST);
-		innerPanel.add(inputComponent, BorderLayout.CENTER);
-		if (maxLabel != null)
-			innerPanel.add(maxLabel, BorderLayout.EAST);
+			if (quantitativeTask.isInteger()) {
+				sliderFactor = 1;
+			} else {
+				sliderFactor = 10;
+			}
+			int min = (int) (quantitativeTask.getMinimum() * sliderFactor);
+			int max = (int) (quantitativeTask.getMaximum() * sliderFactor);
+			int value = (min + max) / 2;
+			
+			inputComponent = new JSlider(min, max, value);
+
+//			((JSlider) inputComponent).setMajorTickSpacing(20);;
+//			((JSlider) inputComponent).setPaintLabels(true);
+//			((JSlider) inputComponent).setPaintLabels(true);
+
+			String minStr = quantitativeTask.getMinimumString();
+			if (minStr == null) {
+				if (quantitativeTask.isInteger()) {
+					minStr = Integer.toString((int) quantitativeTask.getMinimum());
+				} else {
+					minStr = Double.toString(quantitativeTask.getMinimum());
+				}
+			}
+			JLabel minLabel = new JLabel(minStr);
+
+			String maxStr = quantitativeTask.getMaximumString();
+			if (maxStr == null) {
+				if (quantitativeTask.isInteger()) {
+					maxStr = Integer.toString((int) quantitativeTask.getMaximum());
+				} else {
+					maxStr = Double.toString(quantitativeTask.getMaximum());
+				}
+			}
+			JLabel maxLabel = new JLabel(maxStr, SwingConstants.RIGHT);
+
+			this.currentLabel = new JLabel("", SwingConstants.CENTER);
+			updateSliderLabel();
+			((JSlider) inputComponent).addChangeListener(new ChangeListener() {
+				@Override
+				public void stateChanged(ChangeEvent e) {
+					updateSliderLabel();
+				}
+			});
+			
+//			JPanel innerPanel = new JPanel();
+//			innerPanel.setLayout(new BorderLayout());
+//			innerPanel.add(inputComponent, BorderLayout.CENTER);
+			
+			JPanel labels = new JPanel(new GridLayout(1, 3));
+			labels.add(minLabel);
+			labels.add(currentLabel);
+			labels.add(maxLabel);
+
+			answeringPanel.add(labels, BorderLayout.SOUTH);
+			answeringPanel.add(inputComponent, BorderLayout.CENTER);
+
+		} else {
+			inputComponent = new JSpinner();
+			((JSpinner) inputComponent).setModel(new SpinnerNumberModel(
+					(quantitativeTask.getMaximum() + quantitativeTask
+							.getMinimum()) / 2, quantitativeTask.getMinimum(),
+					quantitativeTask.getMaximum(), quantitativeTask
+							.getStepsize()));
+//			((JSpinner) inputComponent).setEditor(new JFormattedTextField(java.text.NumberFormat.getNumberInstance()));
+
+			answeringPanel.add(inputComponent, BorderLayout.CENTER);
+		}
 
 		// textField = new JTextField(5);
 		//
@@ -197,8 +240,6 @@ public class QuantitativeQuestionPanelStrategy extends QuestionPanelStrategy {
 		// jLabel1.setBackground(Color.WHITE);
 		// }
 
-		answeringPanel.add(innerPanel, BorderLayout.CENTER);
-		
 		return answeringPanel;
 	}
 
