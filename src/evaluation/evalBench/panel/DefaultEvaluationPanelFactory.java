@@ -8,6 +8,7 @@ import evaluation.evalBench.task.ItemSelectionQuestion;
 import evaluation.evalBench.task.LikertskalaQuestion;
 import evaluation.evalBench.task.QuantitativeQuestion;
 import evaluation.evalBench.task.Question;
+import evaluation.evalBench.task.SubjectiveMentalEffortQuestion;
 import evaluation.evalBench.task.Task;
 import evaluation.evalBench.task.TextInputQuestion;
 import evaluation.evalBench.task.YesNoQuestion;
@@ -69,6 +70,8 @@ public class DefaultEvaluationPanelFactory implements PanelFactory {
         } else if (question instanceof TextInputQuestion) {
             return new TextInputQuestionPanelStrategy(
                     (TextInputQuestion) question);
+        } else if (question instanceof SubjectiveMentalEffortQuestion) {
+            return new SubjectiveMentalEffortQuestionPanelStrategy(question);
         } else if (question instanceof YesNoQuestion) {
             return new YesNoQuestionPanelStrategy((YesNoQuestion) question);
             // TODO reimplement InsightTask

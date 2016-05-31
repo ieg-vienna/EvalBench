@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -22,6 +23,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  */
 @XmlRootElement
 @XmlType(name="taskType", propOrder={})
+@XmlSeeAlso(value = { SubjectiveMentalEffortQuestion.class })
 public class Task {
 
     // task definition
