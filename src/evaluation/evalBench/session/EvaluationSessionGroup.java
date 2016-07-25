@@ -15,7 +15,7 @@ public class EvaluationSessionGroup {
 
     private ArrayList<EvaluationSession> m_SessionList = new ArrayList<EvaluationSession>();
 
-    private EvaluationSession m_activeSubSession;
+    private EvaluationSession m_activeSubSession = null;
     
     private OutputManager m_outputManager;
 
@@ -74,7 +74,11 @@ public class EvaluationSessionGroup {
      * @return the subsequent evaluation session
      */
     public EvaluationSession getNextSubSession() {
-    	m_SessionList.iterator();
+    	// before 1st session 
+    	if (m_activeSubSession == null && m_SessionList.size() > 0) {
+    		return m_SessionList.get(0);
+    	}
+    		
     	int index = m_SessionList.indexOf(m_activeSubSession);
     	if (index != -1 && index + 1 < m_SessionList.size()) {
     		return m_SessionList.get(index + 1);
@@ -90,8 +94,13 @@ public class EvaluationSessionGroup {
      * @return true if there is at least one evaluation session after the current one
      */
     public boolean hasMoreSessions() {
-    	int index = m_SessionList.indexOf(m_activeSubSession);
-    	return (index != -1 && index + 1 < m_SessionList.size());
+    	// before 1st session 
+    	if (m_activeSubSession == null) {
+    		return (m_SessionList.size() > 0);
+    	} else {
+    		int index = m_SessionList.indexOf(m_activeSubSession);
+    		return (index != -1 && index + 1 < m_SessionList.size());
+    	}
     }
 
     /**
