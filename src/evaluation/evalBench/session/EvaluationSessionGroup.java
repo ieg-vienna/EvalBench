@@ -9,7 +9,7 @@ import evaluation.evalBench.io.OutputManager;
  */
 public class EvaluationSessionGroup {
 
-    // TODO add counter and methods like hasNext() next() --> simplify evaluationSessionDidFinish()
+    // TODO add counter and methods like hasNext() next() --> simplify evaluationSessionDidFinish() -- look for more robust method
     
     private String m_participantId;
 
@@ -66,6 +66,32 @@ public class EvaluationSessionGroup {
      */
     public EvaluationSession getActiveSubSession(){
         return m_activeSubSession;
+    }
+    
+    /**
+     * get the next {@link EvaluationSession}.
+     * <p>Warning: does not work if the same EvaluationSession object is added more than once. 
+     * @return the subsequent evaluation session
+     */
+    public EvaluationSession getNextSubSession() {
+    	m_SessionList.iterator();
+    	int index = m_SessionList.indexOf(m_activeSubSession);
+    	if (index != -1 && index + 1 < m_SessionList.size()) {
+    		return m_SessionList.get(index + 1);
+    	}
+    	else {
+    		return null;
+    	}
+    }
+
+    /**
+     * check if there are more {@link EvaluationSession}s in the group.
+     * <p>Warning: does not work if the same EvaluationSession object is added more than once. 
+     * @return true if there is at least one evaluation session after the current one
+     */
+    public boolean hasMoreSessions() {
+    	int index = m_SessionList.indexOf(m_activeSubSession);
+    	return (index != -1 && index + 1 < m_SessionList.size());
     }
 
     /**
