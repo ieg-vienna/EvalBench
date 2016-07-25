@@ -8,6 +8,7 @@ import evaluation.evalBench.session.EvaluationSession;
 import evaluation.evalBench.session.EvaluationSessionGroup;
 import evaluation.evalBench.task.Task;
 import evaluation.evalBench.util.DateHelper;
+import ieg.util.lang.MoreMath;
 import evaluation.evalBench.io.JournalFactory;
 import evaluation.evalBench.io.CsvJournalFactory;
 import evaluation.evalBench.io.EvaluationSessionJournal;
@@ -305,21 +306,10 @@ public class EvaluationManager {
         }
         
         if (this.m_logUniqueID == null) {
-            this.m_logUniqueID = getRandomId(4);
+            this.m_logUniqueID = MoreMath.getRandomAlphaNum(4);
         }
 	}
 	
-	public static String getRandomId(int chars) {
-        // 4 digit number in base36 (alphanumerical)
-        // 46656 = 1000x36 = 36^3
-        // 1632960 = Z000x36 = 36^4 - 36^3 
-	    final int base = 36;
-	    int low = (int) Math.round(Math.pow(base, chars - 1));
-	    int extent = low * (base - 1);
-        int code = (int) (Math.random() * extent) + low;
-        return Integer.toString(code, base);
-	}
-
     /**
      * configure the logger for free exploration.
      * sets the log filename to log_randomId_date and directory to working directory
