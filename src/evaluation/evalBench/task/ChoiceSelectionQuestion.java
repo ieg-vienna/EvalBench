@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * Class representing a choice selection task a user of a visualization tool has
@@ -243,5 +244,34 @@ public class ChoiceSelectionQuestion extends Question {
 	@Override
 	public String exportCorrectAnswer() {
 		return StringUtils.join(correctAnswers, SEPARATOR);
+	}
+	
+	@Override
+	public Question clone() {
+		ChoiceSelectionQuestion clone = (ChoiceSelectionQuestion) super.clone();
+		
+		if (possibleAnswers != null) {
+			clone.possibleAnswers = new ArrayList<ChoiceOption>(possibleAnswers.size());
+			for (ChoiceOption opt : possibleAnswers) {
+				ChoiceOption optClone = new ChoiceOption(opt.m_label, opt.m_image, opt.m_displayLabel);
+				clone.possibleAnswers.add(optClone);
+			}
+		}
+		
+		if (givenAnswers != null) {
+			clone.givenAnswers = new TreeSet<String>(); // assumption of specific subclass of SortedSet
+			for (String ans : givenAnswers) {
+				clone.givenAnswers.add(ans);
+			}
+		}
+		
+		if (correctAnswers != null) {
+			clone.correctAnswers = new TreeSet<String>(); // assumption of specific subclass of SortedSet
+			for (String ans : correctAnswers) {
+				clone.correctAnswers.add(ans);
+			}
+		}
+		
+		return clone;
 	}
 }

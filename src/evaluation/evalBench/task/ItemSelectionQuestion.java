@@ -57,4 +57,10 @@ public class ItemSelectionQuestion extends Question{
 	public String exportGivenAnswer() {
         return StringUtils.join(m_answeredSelected_Item_ID, SEPARATOR);
 	}
+	
+	@Override
+	public Question clone() {
+		// TODO convert shallow copy to a deep copy
+		return super.clone();
+	}
 }

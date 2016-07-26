@@ -3,6 +3,7 @@ package evaluation.evalBench.task;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
+import java.util.Map.Entry;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -24,7 +25,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @XmlRootElement
 @XmlType(name="taskType", propOrder={})
 @XmlSeeAlso(value = { SubjectiveMentalEffortQuestion.class })
-public class Task {
+public class Task implements Cloneable{
 
     // task definition
     private String    m_taskId;
@@ -310,5 +311,55 @@ public class Task {
                 append("type", m_taskType).
                 append("question-count", (m_questions == null) ? "null" : m_questions.size()).
                 toString();
+    }
+    
+    @Override
+    public Task clone() {
+    	try {
+			Task clone = (Task) super.clone();
+			
+//		    private String    m_taskId;
+//		    private String    m_taskType;
+//		    private String    m_taskDescription;
+//		    private String    m_taskInstruction;
+//		    private Integer   m_runningIndex;
+//		    private String    m_screenshot;
+//			=> Immutable
+
+//		    private ArrayList<Question> m_questions;
+		    if (this.m_questions != null) {
+				clone.m_questions = new ArrayList<Question>(m_questions.size()); 
+				for (Question quest : m_questions) {
+					clone.m_questions.add(quest.clone());
+				}
+		    }
+
+//		    private Date      m_startDate;
+		    if (this.m_startDate != null) {
+			    clone.m_startDate = new Date(m_startDate.getTime());
+		    }
+		    
+//		    private Date      m_finishDate;
+		    if (this.m_finishDate != null) {
+			    clone.m_finishDate = new Date(m_finishDate.getTime());
+		    }
+		    
+//		    private Hashtable<String,String> m_configuration;
+		    if (this.m_configuration != null) {
+		        clone.m_configuration = new Hashtable<String, String>();
+		        for (Entry<String, String> pair : m_configuration.entrySet()) {
+		        	clone.m_configuration.put(pair.getKey(), pair.getValue());
+		        }
+		    }
+		    
+//		    private Configuration m_config_unprocessed;
+		    if (this.m_config_unprocessed != null) {
+		    	clone.m_config_unprocessed = m_config_unprocessed.clone();
+		    }
+
+	    	return clone;
+		} catch (CloneNotSupportedException e) {
+            throw new Error("This should not occur since we implement Cloneable");
+        }
     }
 }

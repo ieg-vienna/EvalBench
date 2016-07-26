@@ -15,7 +15,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @author Stephan Hoffmann, Alexander Rind, David Bauer
  */
 @XmlType(name="questionType")
-public abstract class Question {
+public abstract class Question implements Cloneable {
     
     // TODO optional question
 
@@ -141,5 +141,16 @@ public abstract class Question {
                 append("id", m_questionId).
                 append("type", m_questionText).
                 toString();
+    }
+    
+    @Override
+    public Question clone() {
+    	try {
+    		Question clone = (Question) super.clone();
+    		// only immutable fields
+	    	return clone;
+		} catch (CloneNotSupportedException e) {
+            throw new Error("This should not occur since we implement Cloneable");
+        }
     }
 }

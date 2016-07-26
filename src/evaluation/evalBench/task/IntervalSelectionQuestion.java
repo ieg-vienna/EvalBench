@@ -149,4 +149,10 @@ public class IntervalSelectionQuestion extends Question {
     public Object getCorrectAnswer(){
         throw new UnsupportedOperationException();
     }
+	
+	@Override
+	public Question clone() {
+		// TODO convert shallow copy to a deep copy
+		return super.clone();
+	}
 }

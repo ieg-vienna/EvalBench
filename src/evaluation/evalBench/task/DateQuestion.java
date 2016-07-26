@@ -40,4 +40,19 @@ public class DateQuestion extends Question {
     public void setGivenAnswer(Date m_givenAnswer) {
         this.m_givenAnswer = m_givenAnswer;
     }
+	
+	@Override
+	public Question clone() {
+		DateQuestion clone = (DateQuestion) super.clone();
+		
+		if (m_correctAnswer != null) {
+			clone.m_correctAnswer = new Date(m_correctAnswer.getTime());
+		}
+		
+		if (m_givenAnswer != null) {
+			clone.m_givenAnswer = new Date(m_givenAnswer.getTime());
+		}
+		
+		return clone;
+	}
 }
