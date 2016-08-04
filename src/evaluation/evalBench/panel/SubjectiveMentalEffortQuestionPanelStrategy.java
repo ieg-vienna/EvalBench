@@ -63,7 +63,7 @@ public class SubjectiveMentalEffortQuestionPanelStrategy extends QuestionPanelSt
 	@Override
 	public void inputFinished() {
 		int value = slider.getValue();
-		((SubjectiveMentalEffortQuestion) super.m_question).setGivenAnswer(value);
+		((SubjectiveMentalEffortQuestion) super.getQuestion()).setGivenAnswer(value);
 	}
 	
 	

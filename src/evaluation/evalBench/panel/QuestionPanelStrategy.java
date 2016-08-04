@@ -10,7 +10,7 @@ import javax.swing.*;
  */
 public abstract class QuestionPanelStrategy {
 
-        protected Question m_question;
+        private Question m_question;
         private String errorMessage = "";
 
         public QuestionPanelStrategy(Question aQuestion){

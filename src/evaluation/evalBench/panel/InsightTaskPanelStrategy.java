@@ -41,7 +41,7 @@ public class InsightTaskPanelStrategy extends QuestionPanelStrategy {
 
     @Override
     public boolean checkForCorrectInput() {
-        InsightTask task = (InsightTask) m_question;
+        InsightTask task = (InsightTask) super.getQuestion();
         String[] characteristics = task.getCharacteristics();
 
         String insightText = insightsInput.getText().trim();
@@ -106,8 +106,8 @@ public class InsightTaskPanelStrategy extends QuestionPanelStrategy {
         insightsInput = textArea;
 
         // radio buttons for likert scale
-        String[] vars = ((InsightTask) m_question).getCharacteristics();
-        int levels = ((InsightTask) m_question).getCharacteristicsLevels();
+        String[] vars = ((InsightTask) super.getQuestion()).getCharacteristics();
+        int levels = ((InsightTask) super.getQuestion()).getCharacteristicsLevels();
         JPanel likertGrid = createLikertGrid(vars, levels);
 
         // put it all together in a panel
