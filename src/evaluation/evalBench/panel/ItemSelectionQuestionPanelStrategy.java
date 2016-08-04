@@ -1,6 +1,5 @@
 package evaluation.evalBench.panel;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -12,10 +11,10 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+
 import org.apache.commons.lang3.StringUtils;
 
 import evaluation.evalBench.EvaluationResources;
-import evaluation.evalBench.panel.QuestionPanelStrategy;
 import evaluation.evalBench.task.ItemSelectionQuestion;
 
 public class ItemSelectionQuestionPanelStrategy extends QuestionPanelStrategy{
@@ -84,7 +83,7 @@ public class ItemSelectionQuestionPanelStrategy extends QuestionPanelStrategy{
             itemPane = new JTextPane();
 
             //itemPane.setText("Gewaehlte Items:" );
-            itemPane.setBackground(answeringPanel.getBackground());
+            itemPane.setBackground(innerPanel.getBackground());
             itemPane.setEditable(false);
             
             // setting the height
@@ -101,9 +100,7 @@ public class ItemSelectionQuestionPanelStrategy extends QuestionPanelStrategy{
 //			answeringPanel.add(Box.createRigidArea(new Dimension(40,25)));
 		}
 		
-		answeringPanel.add(innerPanel, BorderLayout.CENTER);
-		
-		return answeringPanel;
+		return innerPanel;
 	}
 
 	@Override

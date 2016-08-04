@@ -1,9 +1,8 @@
 package evaluation.evalBench.panel;
 
-import java.awt.BorderLayout;
 import java.util.Date;
 
-import javax.swing.JPanel;
+import javax.swing.JComponent;
 
 import com.toedter.calendar.JCalendar;
 
@@ -37,14 +36,13 @@ public class DateQuestionPanelStrategy extends QuestionPanelStrategy {
 	}
 
 	@Override
-	public JPanel getNewAnsweringPanel() {
+	public JComponent getNewAnsweringPanel() {
 		//answeringPanel = new JPanel();
 		//answeringPanel.setLayout(new BorderLayout());
 
 		calendar = new JCalendar(new Date(), false);
 
-		answeringPanel.add(calendar, BorderLayout.CENTER);
-		return answeringPanel;
+		return calendar;
 	}
 
 	@Override

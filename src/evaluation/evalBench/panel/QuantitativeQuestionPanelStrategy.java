@@ -135,7 +135,7 @@ public class QuantitativeQuestionPanelStrategy extends QuestionPanelStrategy {
 	 * @return an answering field
 	 */
 	@Override
-	public JPanel getNewAnsweringPanel() {
+	public JComponent getNewAnsweringPanel() {
 
 		QuantitativeQuestion quantitativeTask = (QuantitativeQuestion) super
 				.getQuestion();
@@ -194,9 +194,11 @@ public class QuantitativeQuestionPanelStrategy extends QuestionPanelStrategy {
 			labels.add(minLabel);
 			labels.add(currentLabel);
 			labels.add(maxLabel);
-
+			
+			JPanel answeringPanel = new JPanel(new BorderLayout(5, 15));
 			answeringPanel.add(labels, BorderLayout.SOUTH);
 			answeringPanel.add(inputComponent, BorderLayout.CENTER);
+			return answeringPanel;
 
 		} else {
 			inputComponent = new JSpinner();
@@ -207,7 +209,7 @@ public class QuantitativeQuestionPanelStrategy extends QuestionPanelStrategy {
 							.getStepsize()));
 //			((JSpinner) inputComponent).setEditor(new JFormattedTextField(java.text.NumberFormat.getNumberInstance()));
 
-			answeringPanel.add(inputComponent, BorderLayout.CENTER);
+			return inputComponent;
 		}
 
 		// textField = new JTextField(5);
@@ -239,8 +241,6 @@ public class QuantitativeQuestionPanelStrategy extends QuestionPanelStrategy {
 		//
 		// jLabel1.setBackground(Color.WHITE);
 		// }
-
-		return answeringPanel;
 	}
 
 	@Override

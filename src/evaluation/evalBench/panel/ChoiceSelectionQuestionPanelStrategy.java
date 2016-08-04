@@ -93,9 +93,7 @@ public class ChoiceSelectionQuestionPanelStrategy extends QuestionPanelStrategy
 			checkBoxes.add(aCheckBox);
 		}
 
-		answeringPanel.add(innerPanel, BorderLayout.CENTER);
-
-		return answeringPanel;
+		return innerPanel;
 	}
 
 	@Override

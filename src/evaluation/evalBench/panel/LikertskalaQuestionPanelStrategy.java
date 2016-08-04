@@ -89,9 +89,7 @@ public class LikertskalaQuestionPanelStrategy extends QuestionPanelStrategy {
 		maxJLabel = new JLabel(question.getRightLabel());
 		innerPanel.add(maxJLabel, BorderLayout.EAST);
 
-		answeringPanel.add(innerPanel, BorderLayout.CENTER);
-		
-		return answeringPanel;
+		return innerPanel;
 	}
 
 	@Override

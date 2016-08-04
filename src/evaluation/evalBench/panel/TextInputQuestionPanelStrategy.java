@@ -79,9 +79,7 @@ public class TextInputQuestionPanelStrategy extends QuestionPanelStrategy {
 					BorderLayout.CENTER);
 		}
 
-		answeringPanel.add(innerPanel, BorderLayout.CENTER);
-		
-		return answeringPanel;
+		return innerPanel;
 	}
 
 	@Override

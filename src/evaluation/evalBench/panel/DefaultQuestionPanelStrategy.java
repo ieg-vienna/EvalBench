@@ -29,8 +29,8 @@ public class DefaultQuestionPanelStrategy extends QuestionPanelStrategy{
     }
 
     @Override
-    public JPanel getNewAnsweringPanel() {
-        return answeringPanel;
+    public JComponent getNewAnsweringPanel() {
+        return new JLabel();
     }
 
     @Override

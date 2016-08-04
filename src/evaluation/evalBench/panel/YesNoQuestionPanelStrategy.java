@@ -1,6 +1,5 @@
 package evaluation.evalBench.panel;
 
-import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
@@ -57,9 +56,7 @@ public class YesNoQuestionPanelStrategy extends QuestionPanelStrategy {
 		radioButtonGroup.add(yesButton);
 		radioButtonGroup.add(noButton);
 
-		answeringPanel.add(innerPanel, BorderLayout.CENTER);
-		
-		return answeringPanel;
+		return innerPanel;
 	}
 
 	@Override

@@ -126,18 +126,7 @@ public class TaskPanel extends JPanel {
 
 			{
 				if (taskPanelStrategyList != null) {
-
-					for (QuestionPanelStrategy strategy : taskPanelStrategyList) {
-						JPanel answeringPanel = strategy.getNewAnsweringPanel();
-
-						answeringPanel.setBorder(BorderFactory
-								.createEmptyBorder(5, 5, 5, 5));
-
-						answeringPanel.setMaximumSize(answeringPanel
-								.getPreferredSize());
-
-						taskPanel.add(answeringPanel);
-					}
+					appendQuestionPanels(taskPanel);
 				}
 
 			}
@@ -204,6 +193,24 @@ public class TaskPanel extends JPanel {
 			e.printStackTrace();
 		}
 
+	}
+
+	protected void appendQuestionPanels(JPanel taskPanel) {
+		for (QuestionPanelStrategy strategy : taskPanelStrategyList) {
+			
+			JLabel descriptionLabel = new JLabel(strategy.getQuestion().getQuestionText());
+			JComponent answerPanel = strategy.getNewAnsweringPanel();
+
+			JPanel questionPanel = new JPanel();
+			questionPanel.setLayout(new BorderLayout(5, 15));
+			questionPanel.add(descriptionLabel, BorderLayout.NORTH);
+			questionPanel.add(answerPanel, BorderLayout.CENTER);
+
+			questionPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+			questionPanel.setMaximumSize(questionPanel.getPreferredSize());
+
+			taskPanel.add(questionPanel);
+		}
 	}
 
 	/**

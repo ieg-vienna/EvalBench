@@ -1,10 +1,9 @@
 package evaluation.evalBench.panel;
 
-import java.awt.BorderLayout;
 import java.util.Hashtable;
 
+import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JSlider;
 
 import evaluation.evalBench.task.Question;
@@ -37,7 +36,7 @@ public class SubjectiveMentalEffortQuestionPanelStrategy extends QuestionPanelSt
 	}
 
 	@Override
-	public JPanel getNewAnsweringPanel() {
+	public JComponent getNewAnsweringPanel() {
 		slider = new JSlider(0, 150, 150);
 		slider.setOrientation(JSlider.VERTICAL);
 
@@ -58,8 +57,7 @@ public class SubjectiveMentalEffortQuestionPanelStrategy extends QuestionPanelSt
 //		slider.setMajorTickSpacing(10);
 		slider.setPaintTicks(true);
 		
-		answeringPanel.add(slider, BorderLayout.CENTER);
-		return answeringPanel;
+		return slider;
 	}
 
 	@Override
