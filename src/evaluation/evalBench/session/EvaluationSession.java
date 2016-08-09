@@ -1,11 +1,11 @@
 package evaluation.evalBench.session;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
+
 import evaluation.evalBench.EvaluationManager;
 import evaluation.evalBench.io.EvaluationSessionJournal;
 import evaluation.evalBench.task.Task;
-
-import java.util.ArrayList;
-import java.util.Hashtable;
 
 /**
  * EvaluationSession is responsible for managing a single evaluation session.
@@ -264,6 +264,18 @@ public class EvaluationSession {
 
         return m_sessionCompleted;
     }
+
+	public int getTotalTaskCount() {
+		return m_taskList.size() + m_finishedTaskList.size() + (m_currentTask != null ? 1 : 0);
+	}
+
+	/**
+	 * zero based.
+	 * @return
+	 */
+	public int getCurrentTaskIndex() {
+		return m_finishedTaskList.size();
+	}
 
 
     @Override
