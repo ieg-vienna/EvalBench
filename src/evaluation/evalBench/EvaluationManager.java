@@ -1,7 +1,16 @@
 package evaluation.evalBench;
 
-import evaluation.evalBench.io.XMLTaskListCreator;
+import javax.swing.JPanel;
+
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PatternLayout;
+
+import evaluation.evalBench.io.CsvJournalFactory;
+import evaluation.evalBench.io.EvaluationSessionJournal;
+import evaluation.evalBench.io.JournalFactory;
 import evaluation.evalBench.io.TaskListCreator;
+import evaluation.evalBench.io.XMLTaskListCreator;
 import evaluation.evalBench.panel.DefaultEvaluationPanelFactory;
 import evaluation.evalBench.panel.PanelFactory;
 import evaluation.evalBench.session.EvaluationSession;
@@ -9,12 +18,6 @@ import evaluation.evalBench.session.EvaluationSessionGroup;
 import evaluation.evalBench.task.Task;
 import evaluation.evalBench.util.DateHelper;
 import ieg.util.lang.MoreMath;
-import evaluation.evalBench.io.JournalFactory;
-import evaluation.evalBench.io.CsvJournalFactory;
-import evaluation.evalBench.io.EvaluationSessionJournal;
-
-import javax.swing.*;
-import org.apache.log4j.*;
 
 /**
  * The EvaluationManager is a singleton responsible for interaction logging and management of evaluation session
@@ -88,6 +91,10 @@ public class EvaluationManager {
      */
     public void setPanelFactory(PanelFactory aFactory){
         m_panelFactory = aFactory;
+    }
+
+    public PanelFactory getPanelFactory() {
+        return m_panelFactory;
     }
 
     /**

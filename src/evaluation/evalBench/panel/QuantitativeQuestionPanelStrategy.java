@@ -1,13 +1,20 @@
 package evaluation.evalBench.panel;
 
-import evaluation.evalBench.EvaluationResources;
-import evaluation.evalBench.task.QuantitativeQuestion;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import java.awt.*;
+import evaluation.evalBench.EvaluationResources;
+import evaluation.evalBench.task.QuantitativeQuestion;
 
 /**
  * Subclass of {@link QuantitativeQuestionPanelStrategy} Task Panel Strategy for
@@ -209,7 +216,9 @@ public class QuantitativeQuestionPanelStrategy extends QuestionPanelStrategy {
 							.getStepsize()));
 //			((JSpinner) inputComponent).setEditor(new JFormattedTextField(java.text.NumberFormat.getNumberInstance()));
 
-			return inputComponent;
+            JPanel answeringPanel = new JPanel(new BorderLayout(0, 0));
+            answeringPanel.add(inputComponent, BorderLayout.WEST);
+            return answeringPanel;
 		}
 
 		// textField = new JTextField(5);

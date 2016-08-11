@@ -23,6 +23,8 @@ public abstract class Question implements Cloneable {
 
     private String    m_questionText;
     
+    private boolean m_allowIndentLayout = false;
+
     /**
      * get the correct answer(s) for this question. usually used for logging or journal
      * @return the correct answer(s) for this task
@@ -135,6 +137,15 @@ public abstract class Question implements Cloneable {
         this.m_questionText = questionText;
     }
     
+    public boolean isAllowIndentLayout() {
+        return m_allowIndentLayout;
+    }
+
+    @XmlAttribute(name = "allow-indent-layout", required = false)
+    public void setAllowIndentLayout(boolean m_allowIndentLayout) {
+        this.m_allowIndentLayout = m_allowIndentLayout;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this).
