@@ -1,14 +1,14 @@
 package evaluation.evalBench.task;
 
+import java.util.ArrayList;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 
 import org.apache.commons.lang3.StringUtils;
-
-import java.util.ArrayList;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 /**
  * Class representing a choice selection task a user of a visualization tool has
@@ -107,13 +107,14 @@ public class ChoiceSelectionQuestion extends Question {
 
 	protected ArrayList<ChoiceOption> possibleAnswers;
 
-	// TODO min choices
 	// TODO show max choices in Strategy (if applicable)
     /**
      * maximum number of selectable options. Set to <tt>1</tt> for single-choice
      * selection. Set to <tt>null</tt>, if the number should not be restricted.
      */
     private Integer m_maxChoices = 1;
+
+    private int m_minChoices = 1;
 
 	/**
 	 * Standard constructor, initializes the object with empty taskId,
@@ -167,7 +168,21 @@ public class ChoiceSelectionQuestion extends Question {
 	}
 
 
-	/**
+	public int getMinChoices() {
+        return m_minChoices;
+    }
+
+    /**
+     * Set to <tt>0</tt>, if it is allow the no option is selected.
+     *
+     * @param minChoices
+     */
+    @XmlElement(required = false, defaultValue = "1")
+    public void setMinChoices(int minChoices) {
+        this.m_minChoices = minChoices;
+    }
+
+    /**
 	 * Get the correct answers of this task
 	 * 
 	 * @return an ArrayList of strings containing the correct answers

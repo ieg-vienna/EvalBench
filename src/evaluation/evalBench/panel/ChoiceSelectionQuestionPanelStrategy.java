@@ -1,15 +1,20 @@
 package evaluation.evalBench.panel;
 
-import evaluation.evalBench.EvaluationResources;
-import evaluation.evalBench.task.ChoiceSelectionQuestion;
-import evaluation.evalBench.task.ChoiceSelectionQuestion.ChoiceOption;
-import javax.swing.*;
-
-import java.awt.*;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.TreeSet;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JCheckBox;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JToggleButton;
+
+import evaluation.evalBench.EvaluationResources;
+import evaluation.evalBench.task.ChoiceSelectionQuestion;
+import evaluation.evalBench.task.ChoiceSelectionQuestion.ChoiceOption;
 
 /**
  * Subclass of {@link QuestionPanelStrategy} Task Panel Strategy for a
@@ -126,15 +131,15 @@ public class ChoiceSelectionQuestionPanelStrategy extends QuestionPanelStrategy
 	}
 
 	/**
-	 * checks for correct input for this task and sets the selected checkboxes
-	 * as answers for the task
-	 * 
-	 * @return false if no checkbox was selected
-	 */
-	@Override
-	public boolean checkForCorrectInput() {
+     * checks for correct input for this task and sets the selected checkboxes
+     * as answers for the task
+     *
+     * @return false if wrong number of checkbox was selected
+     */
+    @Override
+    public boolean checkForCorrectInput() {
 
-		ChoiceSelectionQuestion choiceSelectionTask = (ChoiceSelectionQuestion) super
+        ChoiceSelectionQuestion question = (ChoiceSelectionQuestion) super
 				.getQuestion();
 
 		TreeSet<String> givenAnswer = new TreeSet<String>();
@@ -144,25 +149,22 @@ public class ChoiceSelectionQuestionPanelStrategy extends QuestionPanelStrategy
 				givenAnswer.add(aBox.getName());
 		}
 
-		// check if at least one box is selected
-		if (!givenAnswer.isEmpty()) {
+        // no box selected (and not required to select any)
+        if (givenAnswer.isEmpty() && question.getMinChoices() > 0) {
+            this.setErrorMessage((EvaluationResources.getString("choiceselectionquestion.errorNone")));
+            return false;
+        }
 
-			if (givenAnswer.size() > choiceSelectionTask.getMaxChoices()) {
-				this.setErrorMessage(EvaluationResources.getString(
-						"choiceselectionquestion.errorCount").replace("x",
-						 String.valueOf(choiceSelectionTask.getMaxChoices())));
-				return false;
-			}
+        // answer count out of required range
+        if (givenAnswer.size() > question.getMaxChoices() || givenAnswer.size() < question.getMinChoices()) {
+            this.setErrorMessage(String.format(EvaluationResources.getString("choiceselectionquestion.errorCount"),
+                    question.getMinChoices(), question.getMaxChoices()));
+            return false;
+        }
 
-			((ChoiceSelectionQuestion) super.getQuestion())
-					.setGivenAnswer(givenAnswer);
-			this.setErrorMessage("");
-			return true;
-		} else {
-			// otherwise show error msg
-			this.setErrorMessage((EvaluationResources
-					.getString("mctaskpanel.error")));
-			return false;
-		}
-	}
+        // all ok
+        question.setGivenAnswer(givenAnswer);
+        this.setErrorMessage("");
+        return true;
+    }
 }
