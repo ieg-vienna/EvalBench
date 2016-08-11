@@ -157,8 +157,14 @@ public class ChoiceSelectionQuestionPanelStrategy extends QuestionPanelStrategy
 
         // answer count out of required range
         if (givenAnswer.size() > question.getMaxChoices() || givenAnswer.size() < question.getMinChoices()) {
-            this.setErrorMessage(String.format(EvaluationResources.getString("choiceselectionquestion.errorCount"),
-                    question.getMinChoices(), question.getMaxChoices()));
+            if (question.getMaxChoices() == question.getMinChoices()) {
+                this.setErrorMessage(
+                        String.format(EvaluationResources.getString("choiceselectionquestion.errorCountExact"),
+                                question.getMinChoices()));
+            } else {
+                this.setErrorMessage(String.format(EvaluationResources.getString("choiceselectionquestion.errorCount"),
+                        question.getMinChoices(), question.getMaxChoices()));
+            }
             return false;
         }
 
