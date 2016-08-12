@@ -1,7 +1,9 @@
 package evaluation.evalBench.task;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * Class representing a quantitative question a user of a visualization tool has to
@@ -28,6 +30,7 @@ public class QuantitativeQuestion extends Question {
 
 	private boolean m_isInteger;
 	private boolean m_useSpinner;
+    private UI uiComponent = null;
 
 	/**
 	 * minimum possible value (otherwise error message)
@@ -149,18 +152,34 @@ public class QuantitativeQuestion extends Question {
      *            this has to be TRUE
      */
     @XmlElement(name = "use-spinner", defaultValue = "true")
+    @Deprecated
     public void setUseSpinner(boolean useSpinner) {
         this.m_useSpinner = useSpinner;
+        this.uiComponent = (useSpinner) ? UI.SPINNER : UI.SLIDER;
     }
 
 	/**
 	 * @return useSpinner - returns the value of useSpinner
 	 */
+    @Deprecated
 	public boolean getUseSpinner() {
 		return m_useSpinner;
 	}
 
-	/**
+	public UI getUiComponent() {
+        if (uiComponent == null) {
+            return this.m_useSpinner ? UI.SPINNER : UI.SLIDER;
+        }
+        return uiComponent;
+    }
+
+    @XmlElement(name = "ui-component", required = false)
+    public void setUiComponent(UI uiComponent) {
+        this.uiComponent = uiComponent;
+        this.m_useSpinner = (uiComponent == UI.SPINNER);
+    }
+
+    /**
 	 * set the correct answer (i.e. specific double value) and the tolerance
 	 * which should be used to calculate the correctness
 	 * 
@@ -295,4 +314,10 @@ public class QuantitativeQuestion extends Question {
 			return 1.0;
 		}
 	}
+
+    @XmlType(name = "quantitative-question-ui-type")
+    @XmlEnum
+    public enum UI {
+        TEXT, SPINNER, SLIDER;
+    }
 }
