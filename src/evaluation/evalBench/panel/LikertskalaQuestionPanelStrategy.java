@@ -1,28 +1,27 @@
 package evaluation.evalBench.panel;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.ParallelGroup;
+import javax.swing.GroupLayout.SequentialGroup;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
 
 import evaluation.evalBench.EvaluationResources;
 import evaluation.evalBench.task.LikertskalaQuestion;
 
 /**
- * @author David
+ * @author David, Alexander Rind
  *
  */
 public class LikertskalaQuestionPanelStrategy extends QuestionPanelStrategy {
 
-	private JLabel minJLabel, maxJLabel;
-
 	private ButtonGroup radioGroup;
 	private ArrayList<JRadioButton> radioList;
-	private JRadioButton button;
 
 	/**
 	 * @param aQuestion
@@ -59,42 +58,54 @@ public class LikertskalaQuestionPanelStrategy extends QuestionPanelStrategy {
 
 	}
 
-	@Override
-	public JPanel getNewAnsweringPanel() {
-		JPanel innerPanel = new JPanel();
-		innerPanel.setLayout(new BorderLayout());
+    @Override
+    public JPanel getNewAnsweringPanel() {
+        LikertskalaQuestion question = (LikertskalaQuestion) super.getQuestion();
 
-		radioGroup = new ButtonGroup();
-		radioList = new ArrayList<JRadioButton>();
+        radioGroup = new ButtonGroup();
+        radioList = new ArrayList<JRadioButton>();
+        JLabel minJLabel = new JLabel(question.getLeftLabel());
+        minJLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        JLabel maxJLabel = new JLabel(question.getRightLabel());
+        JRadioButton button;
 
-		LikertskalaQuestion question = (LikertskalaQuestion) super.getQuestion();
+        JPanel answer = new JPanel();
+        GroupLayout layout = new GroupLayout(answer);
+        answer.setLayout(layout);
+        layout.setAutoCreateGaps(true);
 
-		minJLabel = new JLabel(question.getLeftLabel());
-		innerPanel.add(minJLabel, BorderLayout.WEST);
+        SequentialGroup hoGrp = layout.createSequentialGroup();
+        ParallelGroup veGrp = layout.createParallelGroup(GroupLayout.Alignment.BASELINE);
 
-		JPanel innerInnerPanel = new JPanel();
-		innerInnerPanel.setLayout(new FlowLayout());
+        hoGrp.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
+        hoGrp.addComponent(minJLabel);
+        veGrp.addComponent(minJLabel);
 
-		for (int i = 0; i < question.getCountOptions(); i++) {
-			button = new JRadioButton("");
-			button.setName(String.valueOf(i));
+        for (int i = 0; i < question.getCountOptions(); i++) {
+            button = new JRadioButton("");
+            button.setName(String.valueOf(i));
 
-			radioGroup.add(button);
-			radioList.add(button);
+            radioGroup.add(button);
+            radioList.add(button);
 
-			innerInnerPanel.add(button);
-		}
+            hoGrp.addComponent(button, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE,
+                    GroupLayout.PREFERRED_SIZE);
+            veGrp.addComponent(button);
+        }
 
-		innerPanel.add(innerInnerPanel);
-		maxJLabel = new JLabel(question.getRightLabel());
-		innerPanel.add(maxJLabel, BorderLayout.EAST);
+        hoGrp.addComponent(maxJLabel);
+        veGrp.addComponent(maxJLabel);
+        layout.linkSize(SwingConstants.HORIZONTAL, minJLabel, maxJLabel);
+        hoGrp.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
 
-		return innerPanel;
-	}
+        layout.setHorizontalGroup(hoGrp);
+        layout.setVerticalGroup(veGrp);
 
-	@Override
-	public void inputFinished() {
-		// TODO Auto-generated method stub
+        return answer;
+    }
 
-	}
+    @Override
+    public void inputFinished() {
+        // nothing to do here
+    }
 }
