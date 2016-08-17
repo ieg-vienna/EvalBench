@@ -219,6 +219,25 @@ public class EvaluationSession {
     }
 
     /**
+     * Removes the first task from the list of unfinished tasks. This is similar
+     * to {@link #getNextTask()} without the side-effect of setting the current
+     * task. Neither does it finish the session. The returned task can
+     * conditionally be reinserted by {@link #addTask(Task, int)}.
+     *
+     * @return the skipped task
+     */
+    public Task extractNextTask() {
+        //        setCurrentTaskFinished();
+        if (hasMoreTasks()) {
+            Task aTask = m_taskList.get(0);
+            m_taskList.remove(0);
+            return aTask;
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * get the next task from the list. the order is either sequential or randomized
      * @return null if no task is available (every task was finished)
      */
