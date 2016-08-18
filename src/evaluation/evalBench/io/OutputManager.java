@@ -117,6 +117,10 @@ public class OutputManager {
     	return new File (outputDirectory, "");
     }
 
+    public void setOutputDirectory(File outputDirectory) {
+        this.outputDirectory = outputDirectory;
+    }
+
     public File getJournalFile(String sessionTitle, String suffix) {
         checkDirectory();
         String fileName = String.format(journalPrefix, participantId,
